@@ -16,26 +16,35 @@ a {
   position: absolute;
   z-index: 2;
   width: 100%;
+  background-color: rgba(100, 100, 100, .5);
+  justify-content: space-between;
 }
 
-ul {
+.nav-item {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+
+
+.nav-link {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 10% ;
+  padding: 0 1% 0 10%;
   list-style: none;
-  height: 10vh;
-  background-color: rgba(100, 100, 100, .2);
+  height: 8vh;
+  margin: 0;
+  justify-content:end;
 }
 
 li a {
   display: block;
   color: #fff;
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }
 
-.container{
+.container-fluid{
   position: relative;
   height: 100vh;
   width: 100%;
@@ -45,7 +54,7 @@ li a {
 .hero-image{
   position: relative;
   background-image: url(../images/Family-Home.jpg);
-  background-size: cover;
+  background-size:cover;
   background-position: center;
   height: 100%;
   width: 100%;
@@ -70,11 +79,23 @@ li a {
   position: absolute;
   top: 75%;
   left: 48%;
-  font-size: 25px;
+  font-size: 15px;
   color: #fff;
   z-index: 2;
 }
 
-.firstword {
-  color: var(--mid-blue)
+@media (max-width: 768px) {
+  .nav-bar {
+    display: block;
+    width: 100%;
+    position: relative;
+  }
+  
+  .nav-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    position: absolute;
+  }
 }
