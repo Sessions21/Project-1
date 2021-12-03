@@ -67,11 +67,61 @@ var displayWeather = function (weather, searchedCity) {
 
   // created a div element to hold the humidity data
   var humidityEl = document.createElement("div");
-  humidityEl.textContent ="Humidity: " + weather.main.humidity + " %";
+  humidityEl.textContent = "Humidity: " + weather.main.humidity + " %";
   temperatureEl.classList = "list-group-item";
 
   // created a div element to hold the wind data
   var windSpeedEl = document.createElement("div");
   windSpeedEl.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
   windSpeedEl.classList = "list-group-item";
+
+  //appending each div element to the main container
+  weatherContainerEl.appendChild(temperatureEl);
+  weatherContainerEl.appendChild(humidityEl);
+  weatherContainerEl.appendChild(windSpeedEl);
+
+  //referenced https://openweathermap.org/api/one-call-api to help with setting lat and lon
+  var lat = weather.coord.lat;
+  var lon = weather.coord.lon;
+  //call for UV Index variable
+  getUvIndex(lat, lon);
 }
+
+//variable function for UV index to get data for lat,lon
+var getUvIndex = function (lat,lon) {
+  var apiKey = "53cc19866aee7a5602f390746fd6f2e7"
+  var apiURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
+  //fetch for the open weather map API with lat and lon parameters
+  fetch(apiURL)
+  .then(function(response){
+      response.json().then(function(data){
+          displayUvIndex(data);
+      });
+  });
+}
+
+// display of the UV index
+var displayUvIndex = function(index) {
+  var uvIndexEl = document.createElement ("div")
+  uvIndexEl.textContent = "UV Index: "
+  uvIndexEl.classList ="list-group-item"
+
+  //span element for UV Value
+  uvIndexValue = document.createElement("span")
+  uvIndexEl.textContent = index.value
+
+  // if and else if statements for value on index for weather conditions, numeric amount taken from Open Weather API
+  if(index.value <=2){
+      uvIndexValue.classList = "favorable"
+  }else if(index.value >2 && index.value<=8){
+      uvIndexValue.classList = "moderate "
+  }
+  else if(index.value >8){
+      uvIndexValue.classList = "severe"
+  };
+  //append index value to index element
+  uvIndexEl.appendChild(uvIndexValue);
+  //append index element to current weather element
+  weatherContainerEl.appendChild(uvIndexEl);
+};
+

@@ -78,3 +78,23 @@ li a {
 .firstword {
   color: var(--mid-blue)
 }
+
+/*span weather element conditions for uv index*/
+span.severe{
+  padding: 3px;
+  background-color:red;
+  color:var(--primary);
+}
+
+span.moderate{
+  padding: 3px;
+  background-color: orange;
+  color: var(--primary);
+}
+
+span.favorable{
+  padding: 3px;
+  background-color: green;
+  color: var(--primary);
+}
+/*end of uv index span styles*/
