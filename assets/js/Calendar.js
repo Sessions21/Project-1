@@ -88,36 +88,36 @@ var displayWeather = function (weather, searchedCity) {
 }
 
 //variable function for UV index to get data for lat,lon
-var getUvIndex = function (lat,lon) {
+var getUvIndex = function (lat, lon) {
   var apiKey = "53cc19866aee7a5602f390746fd6f2e7"
   var apiURL = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
   //fetch for the open weather map API with lat and lon parameters
   fetch(apiURL)
-  .then(function(response){
-      response.json().then(function(data){
-          displayUvIndex(data);
+    .then(function (response) {
+      response.json().then(function (data) {
+        displayUvIndex(data);
       });
-  });
+    });
 }
 
 // display of the UV index
-var displayUvIndex = function(index) {
-  var uvIndexEl = document.createElement ("div")
+var displayUvIndex = function (index) {
+  var uvIndexEl = document.createElement("div")
   uvIndexEl.textContent = "UV Index: "
-  uvIndexEl.classList ="list-group-item"
+  uvIndexEl.classList = "list-group-item"
 
   //span element for UV Value
   uvIndexValue = document.createElement("span")
   uvIndexEl.textContent = index.value
 
   // if and else if statements for value on index for weather conditions, numeric amount taken from Open Weather API
-  if(index.value <=2){
-      uvIndexValue.classList = "favorable"
-  }else if(index.value >2 && index.value<=8){
-      uvIndexValue.classList = "moderate "
+  if (index.value <= 2) {
+    uvIndexValue.classList = "favorable"
+  } else if (index.value > 2 && index.value <= 8) {
+    uvIndexValue.classList = "moderate "
   }
-  else if(index.value >8){
-      uvIndexValue.classList = "severe"
+  else if (index.value > 8) {
+    uvIndexValue.classList = "severe"
   };
   //append index value to index element
   uvIndexEl.appendChild(uvIndexValue);
@@ -125,3 +125,68 @@ var displayUvIndex = function(index) {
   weatherContainerEl.appendChild(uvIndexEl);
 };
 
+var getFiveDay = function (city) {
+  //parameters for city forecast
+  var apiKey = "53cc19866aee7a5602f390746fd6f2e7"
+  var apiURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`
+
+  //fetch of API
+  fetch(apiURL)
+    .then(function (response) {
+      response.json().then(function (data) {
+        displayFiveDay(data);
+      });
+    });
+};
+
+var displayFiveDay = function (weather) {
+  forecastContainerEl.textContent = ""
+  forecastTitle.textContent = "Five-Day Forecast:";
+
+  //variable created with i declared to give 5 day forecast
+  var forecast = weather.list;
+  for (var i = 5; i < forecast.length; i = i + 8) {
+    var dailyForecast = forecast[i];
+
+    // div element created for the forecast containter
+    var forecastEl = document.createElement("div");
+    forecastEl.classList = "card bg-primary text-light m-2";
+
+    //create a date element to display the current dates and future forecast dates
+    var forecastDate = document.createElement("h3")
+    forecastDate.textContent = moment.unix(dailyForecast.dt).format("MMM D, YYYY");
+    forecastDate.classList = "card-header text-center"
+    forecastEl.appendChild(forecastDate);
+
+
+    //Image Element created with attribute set for icons
+    var weatherIcon = document.createElement("img")
+    weatherIcon.classList = "card-body text-center";
+    weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);
+
+    //append images to the forecast card- pulled from openweathermap
+    forecastEl.appendChild(weatherIcon);
+
+    //create temperature span
+    var forecastTempEl = document.createElement("span");
+    forecastTempEl.classList = "card-body text-center";
+    forecastTempEl.textContent = dailyForecast.main.temp + " °f";
+
+    //append to forecast card
+    forecastEl.appendChild(forecastTempEl);
+
+    var forecastHumEl = document.createElement("span");
+    forecastHumEl.classList = "card-body text-center";
+    forecastHumEl.textContent = dailyForecast.main.humidity + "  %";
+
+    //appended Humidity to forecast card
+    forecastEl.appendChild(forecastHumEl);
+
+    //appended forecast element to five day container
+    forecastContainerEl.appendChild(forecastEl);
+  }
+
+};
+
+//event listener for submission of searched city
+cityFormEl.addEventListener("submit", formSumbitHandler);
