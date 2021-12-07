@@ -1,12 +1,7 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
 
 a {
   text-decoration: none;
@@ -25,6 +20,16 @@ a {
   margin-right: 10%;
 }
 
+.nav-link-home {
+  display: flex;
+  align-items: center;
+  padding: 0 1% 0 5%;
+  list-style: none;
+  height: 8vh;
+  margin: 0;
+  justify-content:end;
+}
+
 
 
 .nav-link {
@@ -37,14 +42,14 @@ a {
   justify-content:end;
 }
 
-li a {
+div a {
   display: block;
   color: #fff;
   text-decoration: none;
   font-size: 1.75rem;
 }
 
-.container-fluid{
+.hero{
   position: relative;
   height: 100vh;
   width: 100%;
@@ -67,7 +72,7 @@ li a {
   width: 100%;
   top: 0;
   left: 0;
-  background:rgba(0, 0, 0, 0.5);
+  background:rgba(0, 0, 0, 0.45);
   z-index: 1;
 }
 
@@ -78,12 +83,41 @@ li a {
   flex-direction: column;
   position: absolute;
   top: 75%;
-  left: 48%;
+  left: 43%;
   font-size: 15px;
   color: #fff;
   z-index: 2;
 }
 
+<<<<<<< HEAD
+.full-footer {
+  background-color: lightgray;
+}
+
+.top-footer h5 {
+  color: slategray;
+  font-weight: bold;
+}
+
+.top-footer h4 {
+  color: slategray;
+  font-weight: bold;
+}
+
+.top-footer p {
+  color: slategray;
+  font-size: 20px;
+}
+
+.contact a {
+  color: slategray;
+  font-size: 20px;
+}
+
+
+
+
+=======
 .firstword {
   color: var(--mid-blue)
 }
@@ -107,18 +141,32 @@ span.favorable{
   color: var(--primary);
 }
 /*end of uv index span styles*/
+>>>>>>> eb175e1d1a8eb036fd36c9cc1d3d3b8b82a6d6fb
 @media (max-width: 768px) {
-  .nav-bar {
-    display: block;
+  .nav-containers {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     position: relative;
   }
   
   .nav-link {
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 150px;
     display: flex;
     flex-direction: column;
+    text-align: center;
+
+  }
+
+  .nav-link-home {
     justify-content: center;
-    align-items: left;
+    align-items: center;
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
   }
 }
