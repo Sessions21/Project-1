@@ -89,6 +89,7 @@ div a {
   z-index: 2;
 }
 
+<<<<<<< HEAD
 .full-footer {
   background-color: lightgray;
 }
@@ -116,6 +117,31 @@ div a {
 
 
 
+=======
+.firstword {
+  color: var(--mid-blue)
+}
+
+/*span weather element conditions for uv index*/
+span.severe{
+  padding: 3px;
+  background-color:red;
+  color:var(--primary);
+}
+
+span.moderate{
+  padding: 3px;
+  background-color: orange;
+  color: var(--primary);
+}
+
+span.favorable{
+  padding: 3px;
+  background-color: green;
+  color: var(--primary);
+}
+/*end of uv index span styles*/
+>>>>>>> eb175e1d1a8eb036fd36c9cc1d3d3b8b82a6d6fb
 @media (max-width: 768px) {
   .nav-containers {
     display: flex;
