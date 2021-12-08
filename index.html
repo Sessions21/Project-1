@@ -14,28 +14,28 @@
   <title>SAHP Calendar</title>
 </head>
 
-  <!-- Modal -->
+
 
 <body>
 
-  <div class="modal fade" id="weatherModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="ModalLabel">Get Your Forecast By Entering Your City Below</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-
+<!-- Modal -->
+<div class="modal fade" id="weatherModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">Get Your Forecast By Entering Your City Below</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <div class="modal-body">
         <div class="mb-3">
           <label for="FormControlInput1" class="form-label">City or Location</label>
-          <input type="email" class="form-control" id="FormControlInput1" placeholder="Salt Lake City">
+          <input type="text" class="form-control userLocation" id="FormControlInput1" placeholder="Salt Lake City">
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Get Forecast</button>
+      <div class="modal-footer">          
+        <button type="button" id= "getForecastBtn" class="btn btn-primary">Get Forecast</button>
       </div>
     </div>
   </div>
