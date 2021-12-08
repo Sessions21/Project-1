@@ -14,28 +14,26 @@
   <title>SAHP Calendar</title>
 </head>
 
-  <!-- Modal -->
-
 <body>
 
-  <div class="modal fade" id="weatherModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="ModalLabel">Get Your Forecast By Entering Your City Below</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-
+  <!-- Modal -->
+<div class="modal fade" id="weatherModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">Get Your Forecast By Entering Your City Below</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <div class="modal-body">
         <div class="mb-3">
           <label for="FormControlInput1" class="form-label">City or Location</label>
-          <input type="email" class="form-control" id="FormControlInput1" placeholder="Salt Lake City">
+          <input type="text" class="form-control userLocation" id="FormControlInput1" placeholder="Salt Lake City">
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Get Forecast</button>
+      <div class="modal-footer">          
+        <button type="button" id= "getForecastBtn" class="btn btn-primary">Get Forecast</button>
       </div>
     </div>
   </div>
@@ -87,15 +85,24 @@
     <!-- copied each time block to create next hour div -->
     <!--time blocks for each hour of the day-->
     <div class="input-group  col-10 form-group">
-      <textarea id=time9AM class="form-control custom-control textborder" rows="2" style="resize:none"
-        name="9"></textarea>
+      <div class="row row2 ">
+        <!-- Utilized bootstrap for input-group to format each row with btn and text inputs https://getbootstrap.com/docs/4.0/components/input-group/ -->
+        <div class="input-group input-container  col-1">
+          <p class="border-bottom">
+            9AM
+          </p>
+  
+        </div>
+        <div class="input-group col-10 form-group">
+          <textarea id=time9AM class="form-control custom-control textborder" rows="2" style="resize:none" name="9">
+                </textarea>
+  
+          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
+          </button>
+        </div>
+      </div>
       <!--name classification done in military time-->
       <!-- utilized w3 for the save icon reference https://www.w3schools.com/icons/tryit.asp?filename=tryicons_fa-save -->
-      <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
-      </button>
-
-    </div>
-
 
     <div class="row row2 ">
       <!-- Utilized bootstrap for input-group to format each row with btn and text inputs https://getbootstrap.com/docs/4.0/components/input-group/ -->
@@ -244,7 +251,7 @@
       <div class="col-12 col-md-3 p-2 search-column">
         <form class="border p-2 bg-secondary" id="city-search">
           <h4 class="bg-light text-dark text-center">Search for a City</h2>
-            <input id="city" type="text" autofocus="true" class="form-input" />
+            <input id="city" type="text" class="form-input" />
             <!--BTN element with class id for the search function-->
             <button class="btn btn-primary text-dark bg-light" type="submit">Search</button>
         </form>

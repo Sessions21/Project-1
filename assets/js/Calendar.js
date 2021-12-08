@@ -7,13 +7,9 @@ var citySearchInputEl = document.querySelector("#searched-city")
 var weatherContainerEl = document.querySelector("#current-weather");
 var forecastTitle = document.querySelector("#forecast");
 var forecastContainerEl = document.querySelector("#five-days");
-
-
 var weatherLink = document.querySelector("#weather")
+var getForecast = document.querySelector('#getForecastBtn')
 
-weatherLink.onClick = () => {
-  document.querySelector('[data-target="#weatherModal"]').click();
-};
 
 // Variable targeting the event
 var formSumbitHandler = function (event) {
