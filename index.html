@@ -47,19 +47,20 @@
     <div class="container-fluid nav-containers">
         <div class="float-left list-unstyled list-inline nav-link-home">
             <a href="#" id="home"><i class="fas fa-home fa-1x"></i></a>
+            <p class="sahp text-nowrap">SAHP Schedular</p>
         </div>
         <ul class=" list-unstyled list-inline nav-link">
           <li class="list-inline-item nav-item">
-              <a href="#schedule" id="schedule">Schedule</a>
+              <a href="#schedule-me" id="schedule-section">Schedule</a>
           </li>
           <li class="list-inline-item nav-item">
-              <a href="#weather" id="weather"data-toggle="modal" data-target="#weatherModal">Get Forecast</a>
+              <a href="#weather-me" id="weather-section"data-toggle="modal" data-target="#weatherModal">Get Forecast</a>
           </li>
           <li class="list-inline-item nav-item">
-              <a href="#map" id="map">Map</a>
+              <a href="#map-me" id="map-section">Map</a>
           </li>
           <li class="list-inline-item nav-item">    
-              <a href="#contact" id="contact">Contact</a>
+              <a href="#contact-me" id="contact-section">Contact</a>
           </li>
         </ul>
       </div>
@@ -74,13 +75,15 @@
         <div class="hero-image"><span role="img" aria-label="Busy Parents with kids"></span></div>
     </div>
     <div class="hero-text">
-        <h1 class="display-4">The <span style="color:lightsteelblue; font-weight: bold;">Stay-At-Home-Parent</span> Schedular</h1>
+        <h1 class="display-4">The <span style="color:lightsteelblue;"><u>S</u>tay-<u>A</u>t-<u>H</u>ome-<u>P</u>arent</span> Schedular</h1>
         <h2>Organize the Chaos!</h2>
     </div>
   </header>
 
+  <hr>
+
   <!--Calendar Scheduling Section-->
-  <main class="Calendar">
+  <main class="Calendar" id="schedule-me">
     <!-- copied each time block to create next hour div -->
     <!--time blocks for each hour of the day-->
     <div class="input-group  col-10 form-group">
@@ -91,7 +94,6 @@
       <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
       </button>
 
-    </div>
     </div>
 
 
@@ -233,8 +235,10 @@
     </div>
   </main>
 
+  <hr>
+
   <!-- Weather Section -->
-  <Section class="Weather container-fluid ">
+  <Section class="Weather container-fluid">
     <div class="row">
       <!-- Search City Container -->
       <div class="col-12 col-md-3 p-2 search-column">
@@ -263,20 +267,24 @@
         </div>
   </Section>
 
+  <hr>
+
   <!-- Map/Traffic Section -->
   <section>
 
   </section>
 
+  <hr>
+
   <!-- Footer/Contact Section -->
-  <footer class="full-footer">
+  <footer class="full-footer" id="contact-me">
     <div class="container-fluid top-footer" id="contact">
-      <div class="row">
+      <div class="row align-items-start">
         <div class="col-md-3">
           <img class="img-fluid p-3" src="./assets/images/SAHP-Schedular.jpg" alt="SAHP Logo">
         </div>
         <div class="col-md-3">
-          <a style="color:slategray;" class="p-3" href="https://github.com/Sessions21/Project1-SAHM-Calendar"><i class="fab fa-2x fa-github-square"></i></a>
+          <a style="color:slategray;" class="p-3 ml-5" href="https://github.com/Sessions21/Project1-SAHM-Calendar"><i class="fab fa-2x fa-github-square"></i></a>
           <h5>Checkout our code!</h5>
         </div>
 

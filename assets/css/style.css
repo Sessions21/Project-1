@@ -7,6 +7,7 @@ a {
   text-decoration: none;
 }
 
+/* nav bar styling */
 .nav-bar {
   position: absolute;
   z-index: 2;
@@ -30,6 +31,18 @@ a {
   justify-content:end;
 }
 
+.sahp {
+  display: flex;
+  align-items: center;
+  padding: 0 1% 0 5%;
+  list-style: none;
+  height: 8vh;
+  margin: 3px;
+  justify-content:end;
+  color: lightsteelblue;
+  font-size: 27px;
+}
+
 
 
 .nav-link {
@@ -49,6 +62,7 @@ div a {
   font-size: 1.75rem;
 }
 
+/* Header Section Styling */
 .hero{
   position: relative;
   height: 100vh;
@@ -89,7 +103,8 @@ div a {
   z-index: 2;
 }
 
-<<<<<<< HEAD
+
+/* Footer Styling */
 .full-footer {
   background-color: lightgray;
 }
@@ -115,13 +130,6 @@ div a {
 }
 
 
-
-
-=======
-.firstword {
-  color: var(--mid-blue)
-}
-
 /*span weather element conditions for uv index*/
 span.severe{
   padding: 3px;
@@ -141,8 +149,7 @@ span.favorable{
   color: var(--primary);
 }
 /*end of uv index span styles*/
->>>>>>> eb175e1d1a8eb036fd36c9cc1d3d3b8b82a6d6fb
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .nav-containers {
     display: flex;
     flex-direction: column;
@@ -168,5 +175,9 @@ span.favorable{
     display: flex;
     flex-direction: column;
     text-align: center;
+  }
+
+  .sahp {
+    display: none;
   }
 }
