@@ -1,14 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/e9da089667.js" crossorigin="anonymous"></script>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
   <link rel="stylesheet" href="./assets/css/style.css" />
-  <title>SAHM Calendar</title>
+  <title>SAHP Calendar</title>
 </head>
+<style>
+  #map-container {
+    display: inline;
+  }
+
+  #map {
+    display: inline;
+  }
+</style>
+
+<body>
 
   <!-- Modal -->
   <div class="modal fade" id="weatherModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
@@ -20,88 +37,332 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-
         <div class="modal-body">
           <div class="mb-3">
             <label for="FormControlInput1" class="form-label">City or Location</label>
             <input type="text" class="form-control userLocation" id="FormControlInput1" placeholder="Salt Lake City">
           </div>
         </div>
-        <div class="modal-footer">          
-          <button type="button" id= "getForecastBtn" class="btn btn-primary">Get Forecast</button>
+        <div class="modal-footer">
+          <button type="button" id="getForecastBtn" class="btn btn-primary">Get Forecast</button>
         </div>
       </div>
     </div>
   </div>
 
-<body>
-
   <!--Nav Bar-->
-  <nav id="nav">
-    <div class="nav-bar">
-        <div class="links">
-            <ul>
-              <li>
-                <a href="#SAHP" id="SAHP">The Stay-At-Home-Parent</a>
-                </li>
-                <li>
-                    <a href="#schedule" id="Schedule">Schedular</a>
-                </li>
-                <li>
-                    <a href="#weather" id="Weather"data-toggle="modal" data-target="#weatherModal">Weather</a>
-                </li>
-                <li>
-                    <a href="#Map" id="Map">Map</a>
-                </li>
-                <li>
-                    <a href="#contact" id="contact">Contact</a>
-                </li>
-            </ul>
-        </div>
+
+  <nav class="nav-bar">
+    <div class="container-fluid nav-containers">
+      <div class="float-left list-unstyled list-inline nav-link-home">
+        <a href="#" id="home"><i class="fas fa-home fa-1x"></i></a>
+        <p class="sahp text-nowrap">SAHP Schedular</p>
+      </div>
+      <ul class=" list-unstyled list-inline nav-link">
+        <li class="list-inline-item nav-item">
+          <a href="#schedule-me" id="schedule-section">Schedule</a>
+        </li>
+        <li class="list-inline-item nav-item">
+          <a href="#weather-me" id="weather-section" data-toggle="modal" data-target="#weatherModal">Get Forecast</a>
+        </li>
+        <li class="list-inline-item nav-item">
+          <a href="#map-me" id="map-section">Map</a>
+        </li>
+        <li class="list-inline-item nav-item">
+          <a href="#contact-me" id="contact-section">Contact</a>
+        </li>
+      </ul>
+    </div>
     </div>
   </nav>
 
+
   <!--Header Section-->
   <header id="hero">
-    <div class="container">
-        <div class="image-opacity"></div>
-        <div class="hero-image"><span role="img" aria-label="Busy Parent"></span></div>
+    <div class="container-fluid hero">
+      <div class="image-opacity"></div>
+      <div class="hero-image"><span role="img" aria-label="Busy Parents with kids"></span></div>
     </div>
     <div class="hero-text">
-        <h1>
-            <span class="firstword">The Stay-At-Home-Parent Schedular</span>
-            <br/>Organizing the chaos!
-        </h1>
+      <h1 class="display-4">The <span
+          style="color:lightsteelblue;"><u>S</u>tay-<u>A</u>t-<u>H</u>ome-<u>P</u>arent</span> Schedular</h1>
+      <h2>Organize the Chaos!</h2>
     </div>
   </header>
 
-  <!--Calendar Scheduling Section-->
-  <main class="Calendar">
+  <hr>
 
+  <!--Calendar Scheduling Section-->
+  <main class="Calendar" id="schedule-me">
+    <!-- copied each time block to create next hour div -->
+    <!--time blocks for each hour of the day-->
+    <div class="input-group  col-10 form-group">
+      <div class="row row1 ">
+        <!-- Utilized bootstrap for input-group to format each row with btn and text inputs https://getbootstrap.com/docs/4.0/components/input-group/ -->
+        <div class="input-group input-container  col-1">
+          <p class="border-bottom">
+            9am
+          </p>
+
+        </div>
+        <div class="input-group col-10 form-group">
+          <textarea id=time9AM class="form-control custom-control textborder" rows="2" style="resize:none" name="9">
+                </textarea>
+
+          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
+          </button>
+        </div>
+      </div>
+      <!--name classification done in military time-->
+      <!-- utilized w3 for the save icon reference https://www.w3schools.com/icons/tryit.asp?filename=tryicons_fa-save -->
+
+      <div class="row row2 ">
+        <!-- Utilized bootstrap for input-group to format each row with btn and text inputs https://getbootstrap.com/docs/4.0/components/input-group/ -->
+        <div class="input-group input-container  col-1">
+          <p class="border-bottom">
+            10am
+          </p>
+
+        </div>
+        <div class="input-group col-10 form-group">
+          <textarea id=time10AM class="form-control custom-control textborder" rows="2" style="resize:none" name="10">
+              </textarea>
+
+          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
+          </button>
+        </div>
+      </div>
+
+
+      <div class="row  row3">
+
+        <div class="input-group  col-1">
+          <p class="border-bottom">
+            11am
+          </p>
+
+        </div>
+        <div class="input-group col-10 form-group">
+          <textarea id=time11AM class="form-control custom-control textborder" rows="2" style="resize:none"
+            name="11"></textarea>
+          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
+          </button>
+        </div>
+      </div>
+
+
+      <div class="row row4  ">
+
+        <div class="input-group  col-1">
+          <p class="border-bottom">
+            12pm
+          </p>
+
+        </div>
+        <div class="input-group col-10 form-group">
+          <textarea id=time12PM class="form-control custom-control textborder" rows="2" style="resize:none"
+            name="12"></textarea>
+          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
+          </button>
+        </div>
+      </div>
+
+
+      <div class="row row5">
+
+        <div class="input-group col-1">
+          <p class="border-bottom">
+            1pm
+          </p>
+
+        </div>
+        <div class="input-group col-10 form-group">
+          <textarea id=time1PM class="form-control custom-control textborder" rows="2" style="resize:none"
+            name="13"></textarea>
+          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
+          </button>
+        </div>
+      </div>
+
+
+      <div class="row row6">
+
+        <div class="input-group col-1">
+          <p class="border-bottom">
+            2pm
+          </p>
+
+        </div>
+        <div class="input-group col-10 form-group">
+          <textarea id=time2PM class="form-control custom-control textborder" rows="2" style="resize:none"
+            name="14"></textarea>
+          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
+          </button>
+        </div>
+      </div>
+
+
+      <div class="row row7">
+
+        <div class="input-group col-1">
+          <p class="border-bottom">
+            3pm
+          </p>
+
+        </div>
+        <div class="input-group col-10 form-group">
+          <textarea id=time3PM class="form-control custom-control textborder" rows="2" style="resize:none"
+            name="15"></textarea>
+          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
+          </button>
+        </div>
+      </div>
+
+
+      <div class="row row8">
+
+        <div class="input-group col-1">
+          <p class="border-bottom">
+            4pm
+          </p>
+
+        </div>
+        <div class="input-group col-10 form-group">
+          <textarea id=time4PM class="form-control custom-control textborder" rows="2" style="resize:none"
+            name="16"></textarea>
+          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="row row9">
+
+        <div class="input-group col-1">
+          <p class="border-bottom">
+            5pm
+          </p>
+
+        </div>
+        <div class="input-group col-10 form-group">
+          <textarea id=time5PM class="textborder form-control custom-control" rows="2" style="resize:none"
+            name="17"></textarea>
+          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
+          </button>
+        </div>
+      </div>
+
+    </div>
   </main>
 
-  <!-- Weather Section -->
-  <Section class="Weather" >
+  <hr>
 
+  <!-- Weather Section -->
+  <Section class="Weather container-fluid">
+    <div class="row">
+      <!-- Search City Container -->
+      <div class="col-12 col-md-3 p-2 search-column">
+        <form class="border p-2 bg-secondary" id="city-search">
+          <h4 class="bg-light text-dark text-center">Search for a City</h2>
+            <input id="city" type="text" class="form-input" />
+            <!--BTN element with class id for the search function-->
+            <button class="btn btn-primary text-dark bg-light" type="submit">Search</button>
+        </form>
+        <div class="search-history border" id="search-history-btns"></div>
+      </div>
+      <!--Div container for current forecast with Bootstrap formating -->
+      <div class="col-12 col-md-9">
+        <div class="row border city-selection" id="current-forecast">
+          <div class="col-12">
+            <!---H2 element for searched city-->
+            <h2 id="searched-city"></h2>
+            <!--Current weather div container-->
+            <div id="current-weather" class="list-group"></div>
+          </div>
+        </div>
+        <!--5 Day Forecast container-->
+        <div class="row border" id="five-day-forecast">
+          <h2 class="col-12" id="forecast"></h2>
+          <div class="d-flex" id="five-days"></div>
+        </div>
   </Section>
 
-  <!-- Map/Traffic Section -->
-  <section>
+  <hr>
 
+  <!-- Map/Traffic Section -->
+<!-- code for directions api pulled from the following https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-directions/ -->
+
+  <section id="map-container">
+    <script
+      src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+    <link rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css"
+      type="text/css">
+    <div id="map"></div>
+
+    <script>
+      // https://account.mapbox.com visit website to get public access token
+      mapboxgl.accessToken = 'pk.eyJ1IjoiYXZsYW1ha2lzMjEiLCJhIjoiY2t3eDAyeDMxMDh5bjJ2cTExemloeWMweiJ9.OhaAL2FFMe8FqV_fIpR9iQ';
+      const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [-79.4512, 43.6568],
+        zoom: 13
+      });
+
+      map.addControl(
+        new MapboxDirections({
+          accessToken: mapboxgl.accessToken
+        }),
+        'top-left'
+      );
+    </script>
   </section>
 
+  <hr>
+
   <!-- Footer/Contact Section -->
-  <footer class="footer">
+  <footer class="full-footer" id="contact-me">
+    <div class="container-fluid top-footer" id="contact">
+      <div class="row align-items-center">
+        <div class="col-md-3">
+          <img class="img-fluid p-3" src="./assets/images/SAHP-Schedular.jpg" alt="SAHP Logo">
+        </div>
+        <div class="col-md-3">
+          <a style="color:slategray;" class="p-3 ml-5" href="https://github.com/Sessions21/Project1-SAHM-Calendar"><i
+              class="fab fa-2x fa-github-square"></i></a>
+          <h5>Checkout our code!</h5>
+        </div>
+
+        <address class="col-md-3 address p-3">
+          <h4>Address:</h4>
+          <p>SAHP Schedular HQ<br>1234 Street <br />City State 87654</p>
+        </address>
+
+        <div class="col-md-3">
+          <address class="col-md-3 contact p-3 text-nowrap">
+            <h4>Contact Us:</h4>
+            <a href="mailto:s21nichols@hotmail.com">SAHPS@myemail.com</a>
+            <a href="tel:+8019535628">(801)953-5628</a>
+          </address>
+        </div>
+      </div>
+    </div>
 
   </footer>
 
   <script
-  src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  <script src="./assets/js/Calendar.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script src="./assets/js/Calendar.js"></script>
 </body>
+
 </html>
