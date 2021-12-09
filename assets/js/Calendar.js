@@ -63,16 +63,12 @@ var displayWeather = function (weather, searchedCity) {
 
   //created date element, utilizing moment.js file to create the date format reference https://momentjs.com/ to set the date
   var currentDate = document.createElement("span");
-  currentDate.textContent =
-    " (" + moment(weather.dt.value).format("MMM D, YYYY") + ") ";
+  currentDate.textContent = " (" + moment(weather.dt.value).format("MMM D, YYYY") + ") ";
   citySearchInputEl.appendChild(currentDate);
 
   //created a image element for weather ICONS
   var weatherIcon = document.createElement("img");
-  weatherIcon.setAttribute(
-    "src",
-    `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`
-  );
+  weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`);
   citySearchInputEl.appendChild(weatherIcon);
 
   //created a div element to hold the temperature data
@@ -166,19 +162,14 @@ var displayFiveDay = function (weather) {
 
     //create a date element to display the current dates and future forecast dates
     var forecastDate = document.createElement("h3");
-    forecastDate.textContent = moment
-      .unix(dailyForecast.dt)
-      .format("MMM D, YYYY");
+    forecastDate.textContent = moment.unix(dailyForecast.dt).format("MMM D, YYYY");
     forecastDate.classList = "card-header text-center";
     forecastEl.appendChild(forecastDate);
 
     //Image Element created with attribute set for icons
     var weatherIcon = document.createElement("img");
     weatherIcon.classList = "card-body text-center";
-    weatherIcon.setAttribute(
-      "src",
-      `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`
-    );
+    weatherIcon.setAttribute("src", `https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`);
 
     //append images to the forecast card- pulled from openweathermap
     forecastEl.appendChild(weatherIcon);
