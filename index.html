@@ -39,8 +39,8 @@
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            <label for="FormControlInput1" class="form-label">City or Location</label>
-            <input type="text" class="form-control userLocation" id="FormControlInput1" placeholder="Salt Lake City">
+            <label for="city-search-input" class="form-label">City or Location</label>
+            <input type="text" class="form-control userLocation" id="city-search-input" placeholder="Salt Lake City">
           </div>
         </div>
         <div class="modal-footer">
@@ -63,7 +63,7 @@
           <a href="#schedule-me" id="schedule-section">Schedule</a>
         </li>
         <li class="list-inline-item nav-item">
-          <a href="#weather-me" id="weather-section" data-toggle="modal" data-target="#weatherModal">Get Forecast</a>
+          <a href="#weather-me" id="weather-section">Get Forecast</a>
         </li>
         <li class="list-inline-item nav-item">
           <a href="#map-me" id="map-section">Map</a>
@@ -259,16 +259,6 @@
   <!-- Weather Section -->
   <Section class="Weather container-fluid">
     <div class="row">
-      <!-- Search City Container -->
-      <div class="col-12 col-md-3 p-2 search-column">
-        <form class="border p-2 bg-secondary" id="city-search">
-          <h4 class="bg-light text-dark text-center">Search for a City</h2>
-            <input id="city" type="text" class="form-input" />
-            <!--BTN element with class id for the search function-->
-            <button class="btn btn-primary text-dark bg-light" type="submit">Search</button>
-        </form>
-        <div class="search-history border" id="search-history-btns"></div>
-      </div>
       <!--Div container for current forecast with Bootstrap formating -->
       <div class="col-12 col-md-9">
         <div class="row border city-selection" id="current-forecast">

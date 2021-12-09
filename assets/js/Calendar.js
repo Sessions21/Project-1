@@ -1,37 +1,32 @@
-//global variables called by ID
+// global variables called by ID
 var cities = [];
-//weather/city variables
+// weather/city variables
 var cityFormEl = document.querySelector("#city-search");
 var cityInputEl = document.querySelector("#city");
-var citySearchInputEl = document.querySelector("#searched-city");
+var citySearchInputEl = document.querySelector("#city-search-input");
 var weatherContainerEl = document.querySelector("#current-weather");
 var forecastTitle = document.querySelector("#forecast");
 var forecastContainerEl = document.querySelector("#five-days");
-var weatherLink = document.querySelector("#weather");
+var weatherLink = document.querySelector("#weather-section");
 var getForecast = document.querySelector("#getForecastBtn");
 
-//Variables
-var weatherLink = document.querySelector("#weather");
-var getForecast = document.querySelector("#getForecastBtn");
-//Weather click in nav bar will show modal
+// Weather click in nav bar will show modal
 $(weatherLink).click(function () {
-  $("weatherModal").modal("show");
+  $("#weatherModal").modal("show");
 });
 
 $(getForecast).on("click", function () {
-  $('input[type="text"]').each(function () {
-    var id = $(this).attr("id");
-    var value = $(this).val();
-    localStorage.setItem(id, value);
-    console.log(id, value);
-  });
+  var city = $(citySearchInputEl).val();
+  getFiveDay(city);
+  getCityWeather(city);
+  $("#weatherModal").modal("hide");
 });
 
 // Variable targeting the event
 var formSumbitHandler = function (event) {
   event.preventDefault();
   var city = cityInputEl.value.trim();
-  //if statement calling the functions
+  // if statement calling the functions
   if (city) {
     getCityWeather(city);
     getFiveDay(city);
@@ -43,12 +38,13 @@ var formSumbitHandler = function (event) {
 
 // fetch for server side API within function getCityWeather
 var getCityWeather = function (city) {
-  //api key gathered from https://home.openweathermap.org/api_keys
+  // api key gathered from https://home.openweathermap.org/api_keys
   var apiKey = "53cc19866aee7a5602f390746fd6f2e7";
   var apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`;
-  //fetch for apiURL
+
+  // fetch for apiURL
   fetch(apiURL).then(function (response) {
-    //display data with call of displayWeather
+    // display data with call of displayWeather
     response.json().then(function (data) {
       displayWeather(data, city);
     });
@@ -198,11 +194,9 @@ var displayFiveDay = function (weather) {
 $(document).ready(function () {
   // utilizing moment.js file to create the date format reference https://momentjs.com/ to set todays date
   var today = moment().format("MMMM Do YYYY");
-  console.log(today);
   $(".todaysDate").append(today);
 
   var now = parseInt(moment().format("HH"));
-  console.log(now);
 
   //time blocks created from 9AM to 6PM identifying by ID
   //read $time9AM-5PM in local storage
@@ -231,31 +225,28 @@ $(document).ready(function () {
       $(this).addClass("bg-red");
     }
   });
-  // on click function for local storage
-  $("button").on("click", function () {
-    // sets items to the local storage for each time block value
-    localStorage.setItem("9AM", $time9AM.val());
-    localStorage.setItem("10AM", $time10AM.val());
-    localStorage.setItem("11AM", $time11AM.val());
-    localStorage.setItem("12PM", $time12PM.val());
-    localStorage.setItem("1PM", $time1PM.val());
-    localStorage.setItem("2PM", $time2PM.val());
-    localStorage.setItem("3PM", $time3PM.val());
-    localStorage.setItem("4PM", $time4PM.val());
-    localStorage.setItem("5PM", $time5PM.val());
-  });
-  //getting the content stored and sending to the screen. When page is refreshed content will stay
-  $("#time9AM").append(localStorage.getItem("9AM"));
-  $("#time10AM").append(localStorage.getItem("10AM"));
-  $("#time11AM").append(localStorage.getItem("11AM"));
-  $("#time12PM").append(localStorage.getItem("12PM"));
-  $("#time1PM").append(localStorage.getItem("1PM"));
-  $("#time2PM").append(localStorage.getItem("2PM"));
-  $("#time3PM").append(localStorage.getItem("3PM"));
-  $("#time4PM").append(localStorage.getItem("4PM"));
-  $("#time5PM").append(localStorage.getItem("5PM"));
-});
-// end of calendar JS File
 
-//event listener for submission of searched city
-cityFormEl.addEventListener("submit", formSumbitHandler);
+  //   // on click function for local storage
+  //   $("button").on("click", function () {
+  //     // sets items to the local storage for each time block value
+  //     localStorage.setItem("9AM", $time9AM.val());
+  //     localStorage.setItem("10AM", $time10AM.val());
+  //     localStorage.setItem("11AM", $time11AM.val());
+  //     localStorage.setItem("12PM", $time12PM.val());
+  //     localStorage.setItem("1PM", $time1PM.val());
+  //     localStorage.setItem("2PM", $time2PM.val());
+  //     localStorage.setItem("3PM", $time3PM.val());
+  //     localStorage.setItem("4PM", $time4PM.val());
+  //     localStorage.setItem("5PM", $time5PM.val());
+  //   });
+  //   //getting the content stored and sending to the screen. When page is refreshed content will stay
+  //   $("#time9AM").append(localStorage.getItem("9AM"));
+  //   $("#time10AM").append(localStorage.getItem("10AM"));
+  //   $("#time11AM").append(localStorage.getItem("11AM"));
+  //   $("#time12PM").append(localStorage.getItem("12PM"));
+  //   $("#time1PM").append(localStorage.getItem("1PM"));
+  //   $("#time2PM").append(localStorage.getItem("2PM"));
+  //   $("#time3PM").append(localStorage.getItem("3PM"));
+  //   $("#time4PM").append(localStorage.getItem("4PM"));
+  //   $("#time5PM").append(localStorage.getItem("5PM"));
+});
