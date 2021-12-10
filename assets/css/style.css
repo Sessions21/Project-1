@@ -130,12 +130,6 @@ div a {
 }
 
 
-
-
-.firstword {
-  color: var(--mid-blue)
-}
-
 /*span weather element conditions for uv index*/
 span.severe{
   padding: 3px;
