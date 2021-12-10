@@ -129,6 +129,18 @@ div a {
   font-size: 20px;
 }
 
+/*map container styling*/
+#map-container {
+  position: relative;
+  height: 500px;
+  width: 700px;
+}
+
+#map {
+  position: relative;
+  height: inherit;
+  width: inherit;
+}
 
 /*span weather element conditions for uv index*/
 span.severe{

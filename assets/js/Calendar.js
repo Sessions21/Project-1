@@ -79,7 +79,7 @@ var displayWeather = function (weather, searchedCity) {
   // created a div element to hold the humidity data
   var humidityEl = document.createElement("div");
   humidityEl.textContent = "Humidity: " + weather.main.humidity + " %";
-  temperatureEl.classList = "list-group-item";
+  humidityEl.classList = "list-group-item";
 
   // created a div element to hold the wind data
   var windSpeedEl = document.createElement("div");
