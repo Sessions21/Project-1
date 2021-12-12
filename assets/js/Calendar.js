@@ -195,62 +195,65 @@ var displayFiveDay = function (weather) {
 };
 
 // start of calendar js file
-$(document).ready(function () {
-  // utilizing moment.js file to create the date format reference https://momentjs.com/ to set todays date
-  var today = moment().format("MMMM Do YYYY");
-  $(".todaysDate").append(today);
+function generateTimeblock (hour) {
+  var timeBlockRow = $("<div>");
+  timeBlockRow.addClass("row justify-content-center mb-1");
 
-  var now = parseInt(moment().format("HH"));
+  var timeBlockHour = $("<div>");
+  timeBlockHour.addClass("col-2 mr-2 bg-secondary p-2 text-center font-weight-bold");
+  timeBlockHour.text(hour);
 
-  //time blocks created from 9AM to 6PM identifying by ID
-  //read $time9AM-5PM in local storage
+  var timeBlockDetail = $("<div>");
+  timeBlockDetail.addClass("col-6 border-right border-left border-light p-2");
 
-  var $time9AM = $("#time9AM");
-  var $time10AM = $("#time10AM");
-  var $time11AM = $("#time11AM");
-  var $time12PM = $("#time12PM");
-  var $time1PM = $("#time1PM");
-  var $time2PM = $("#time2PM");
-  var $time3PM = $("#time3PM");
-  var $time4PM = $("#time4PM");
-  var $time5PM = $("#time5PM");
+  var momentHour = moment(hour, 'hh:mm A').hour();
+  var currentHour = moment().hour();
 
-  $("textarea").each(function () {
-    var name = parseInt($(this).attr("name"));
-    if (name < now) {
-      //using class attributes to add color to .this
-      $(this).addClass("bg-gray");
-    }
-    if (name > now) {
-      $(this).addClass("bg-green");
-    }
+  if(momentHour < currentHour) {
+    timeBlockDetail.addClass("past");
+  }
+    else if (momentHour > currentHour) {
+    timeBlockDetail.addClass("future");
+  }
+  else if (momentHour === currentHour) {
+    timeBlockDetail.addClass("present");
+  }
+  
+  var timeBlockInput = $("<textarea>");
+  timeBlockInput.attr("type", "text");
+  timeBlockInput.css('color', 'white');
+  timeBlockInput.css('width', "100%");
+  timeBlockInput.attr("placeholder", "Enter task detail here");
+  timeBlockDetail.append(timeBlockInput);
+  if (localStorage.getItem(hour)) {
+    timeBlockInput.val(localStorage.getItem(hour))
+  }
 
-    if (name === now) {
-      $(this).addClass("bg-red");
-    }
+
+  var timeBlockSave = $("<div>");
+  timeBlockSave.addClass("col-2 ml-2 bg-info text-light text-center p-2");
+  var saveIcon = $("<i>");
+  saveIcon.addClass("fas fa-save fa-4x button");
+  timeBlockSave.append(saveIcon);
+  timeBlockSave.click(function () {
+    localStorage.setItem(hour, timeBlockInput.val() )
   });
 
-  // on click function for local storage
-  $("button").on("click", function () {
-    // sets items to the local storage for each time block value
-    localStorage.setItem("9AM", $time9AM.val());
-    localStorage.setItem("10AM", $time10AM.val());
-    localStorage.setItem("11AM", $time11AM.val());
-    localStorage.setItem("12PM", $time12PM.val());
-    localStorage.setItem("1PM", $time1PM.val());
-    localStorage.setItem("2PM", $time2PM.val());
-    localStorage.setItem("3PM", $time3PM.val());
-    localStorage.setItem("4PM", $time4PM.val());
-    localStorage.setItem("5PM", $time5PM.val());
-  });
-  //getting the content stored and sending to the screen. When page is refreshed content will stay
-  $("#time9AM").append(localStorage.getItem("9AM"));
-  $("#time10AM").append(localStorage.getItem("10AM"));
-  $("#time11AM").append(localStorage.getItem("11AM"));
-  $("#time12PM").append(localStorage.getItem("12PM"));
-  $("#time1PM").append(localStorage.getItem("1PM"));
-  $("#time2PM").append(localStorage.getItem("2PM"));
-  $("#time3PM").append(localStorage.getItem("3PM"));
-  $("#time4PM").append(localStorage.getItem("4PM"));
-  $("#time5PM").append(localStorage.getItem("5PM"));
-});
+
+  timeBlockRow.append(timeBlockHour, timeBlockDetail, timeBlockSave)
+  return timeBlockRow
+}
+
+//Hour Increments for tasks
+var timeIncrementArray = ["08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM","01:00 PM",
+ "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM", "06:00 PM"] 
+for (var i = 0; i < timeIncrementArray.length; i++) {
+  $("#timeDisplay").append(generateTimeblock(timeIncrementArray[i])
+  )};
+
+
+//Current time display at page top on load
+var timeDisplay = moment();
+var timeContainer = $("#currentDay");
+timeContainer.css("fontWeight", "bold")
+timeContainer.append(timeDisplay.format("dddd, MMMM Do YYYY, h:mm:ss a"));

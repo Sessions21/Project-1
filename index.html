@@ -13,7 +13,8 @@
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet">
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
   <link rel="stylesheet" href="./assets/css/style.css" />
-  <title>SAHP Calendar</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"/>
+  <title>SAHP Scheduler</title>
 </head>
 
 <body>
@@ -47,7 +48,7 @@
     <div class="container-fluid nav-containers">
       <div class="float-left list-unstyled list-inline nav-link-home">
         <a href="#" id="home"><i class="fas fa-home fa-1x"></i></a>
-        <p class="sahp text-nowrap">SAHP Schedular</p>
+        <p class="sahp text-nowrap">SAHP Scheduler</p>
       </div>
       <ul class=" list-unstyled list-inline nav-link">
         <li class="list-inline-item nav-item">
@@ -57,7 +58,7 @@
           <a href="#" id="get-forecast-nav-button">Get Forecast</a>
         </li>
         <li class="list-inline-item nav-item">
-          <a href="#map-me" id="map-section">Map</a>
+          <a href="#map-container" id="map-section">Map</a>
         </li>
         <li class="list-inline-item nav-item">
           <a href="#contact-me" id="contact-section">Contact</a>
@@ -76,7 +77,7 @@
     </div>
     <div class="hero-text">
       <h1 class="display-4">The <span
-          style="color:lightsteelblue;"><u>S</u>tay-<u>A</u>t-<u>H</u>ome-<u>P</u>arent</span> Schedular</h1>
+          style="color:lightsteelblue;"><u>S</u>tay-<u>A</u>t-<u>H</u>ome-<u>P</u>arent</span> Scheduler</h1>
       <h2>Organize the Chaos!</h2>
     </div>
   </header>
@@ -84,170 +85,28 @@
   <hr>
 
   <!--Calendar Scheduling Section-->
-  <main class="Calendar" id="schedule-me">
-    <!-- copied each time block to create next hour div -->
-    <!--time blocks for each hour of the day-->
-    <div class="input-group  col-10 form-group">
-      <div class="row row1 ">
-        <!-- Utilized bootstrap for input-group to format each row with btn and text inputs https://getbootstrap.com/docs/4.0/components/input-group/ -->
-        <div class="input-group input-container  col-1">
-          <p class="border-bottom">
-            9am
-          </p>
-
-        </div>
-        <div class="input-group col-10 form-group">
-          <textarea id=time9AM class="form-control custom-control textborder" rows="2" style="resize:none" name="9">
-                </textarea>
-
-          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
-          </button>
-        </div>
+  <header class="jumbotron" id="schedule-me">
+    <h2 class="display-3">The SAHP Scheduler</h2>
+    <p class="lead">A simple calendar app for scheduling your complex day!</p>
+    <p id="currentDay" class="lead mt-5"></p>
+  </header>
+  <div class="container-fluid" id="timeDisplay">
+    <!-- Timeblocks go here -->
+    <!-- <div class="row justify-content-center mb-1">
+      <div class="col-2 mr-2 bg-warning bg-gradient p-2">9:00 AM</div>
+      <div class="col-6 bg-dark border-right border-left border-light text-light p-2">
+        <textarea type="text"></textarea>
       </div>
-      <!--name classification done in military time-->
-      <!-- utilized w3 for the save icon reference https://www.w3schools.com/icons/tryit.asp?filename=tryicons_fa-save -->
-
-      <div class="row row2 ">
-        <!-- Utilized bootstrap for input-group to format each row with btn and text inputs https://getbootstrap.com/docs/4.0/components/input-group/ -->
-        <div class="input-group input-container  col-1">
-          <p class="border-bottom">
-            10am
-          </p>
-
-        </div>
-        <div class="input-group col-10 form-group">
-          <textarea id=time10AM class="form-control custom-control textborder" rows="2" style="resize:none" name="10">
-              </textarea>
-
-          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
-          </button>
-        </div>
-      </div>
-
-
-      <div class="row  row3">
-
-        <div class="input-group  col-1">
-          <p class="border-bottom">
-            11am
-          </p>
-
-        </div>
-        <div class="input-group col-10 form-group">
-          <textarea id=time11AM class="form-control custom-control textborder" rows="2" style="resize:none"
-            name="11"></textarea>
-          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
-          </button>
-        </div>
-      </div>
-
-
-      <div class="row row4  ">
-
-        <div class="input-group  col-1">
-          <p class="border-bottom">
-            12pm
-          </p>
-
-        </div>
-        <div class="input-group col-10 form-group">
-          <textarea id=time12PM class="form-control custom-control textborder" rows="2" style="resize:none"
-            name="12"></textarea>
-          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
-          </button>
-        </div>
-      </div>
-
-
-      <div class="row row5">
-
-        <div class="input-group col-1">
-          <p class="border-bottom">
-            1pm
-          </p>
-
-        </div>
-        <div class="input-group col-10 form-group">
-          <textarea id=time1PM class="form-control custom-control textborder" rows="2" style="resize:none"
-            name="13"></textarea>
-          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
-          </button>
-        </div>
-      </div>
-
-
-      <div class="row row6">
-
-        <div class="input-group col-1">
-          <p class="border-bottom">
-            2pm
-          </p>
-
-        </div>
-        <div class="input-group col-10 form-group">
-          <textarea id=time2PM class="form-control custom-control textborder" rows="2" style="resize:none"
-            name="14"></textarea>
-          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
-          </button>
-        </div>
-      </div>
-
-
-      <div class="row row7">
-
-        <div class="input-group col-1">
-          <p class="border-bottom">
-            3pm
-          </p>
-
-        </div>
-        <div class="input-group col-10 form-group">
-          <textarea id=time3PM class="form-control custom-control textborder" rows="2" style="resize:none"
-            name="15"></textarea>
-          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
-          </button>
-        </div>
-      </div>
-
-
-      <div class="row row8">
-
-        <div class="input-group col-1">
-          <p class="border-bottom">
-            4pm
-          </p>
-
-        </div>
-        <div class="input-group col-10 form-group">
-          <textarea id=time4PM class="form-control custom-control textborder" rows="2" style="resize:none"
-            name="16"></textarea>
-          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
-          </button>
-        </div>
-      </div>
-
-      <div class="row row9">
-
-        <div class="input-group col-1">
-          <p class="border-bottom">
-            5pm
-          </p>
-
-        </div>
-        <div class="input-group col-10 form-group">
-          <textarea id=time5PM class="textborder form-control custom-control" rows="2" style="resize:none"
-            name="17"></textarea>
-          <button class="col-1 saveBtn"><span style="font-size: 2.5em; color: black "><i class="fa fa-save"></i></span>
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </main>
+      <div class="col-2 ml-2 bg-info text-light text-center p-2"><i class="fas fa-save fa-4x"></i></div>
+    </div> -->
+  </div>
 
   <hr>
 
   <!-- Weather Section -->
+  <header class="jumbotron" id="schedule-me">
+    <h2 class="display-3">Current Forecast</h2>
+  </header>
   <Section class="Weather container-fluid" id="weather-section">
     <div class="row justify-content-center">
       <!--Div container for current forecast with Bootstrap formating -->
@@ -271,6 +130,9 @@
 
   <!-- Map/Traffic Section -->
   <!-- code for directions api pulled from the following https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-directions/ -->
+  <header class="jumbotron" id="schedule-me">
+    <h2 class="display-3">Map/Traffic</h2>
+  </header>
   <section id="map-container">
     <script
       src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
@@ -341,6 +203,7 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
   <script src="./assets/js/Calendar.js"></script>
+  <script src="./assets/lib/moment.min.js"></script>
 </body>
 
 </html>
