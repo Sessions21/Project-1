@@ -9,6 +9,7 @@ var forecastTitle = document.querySelector("#forecast");
 var forecastContainerEl = document.querySelector("#five-days");
 var weatherLink = document.querySelector("#get-forecast-nav-button");
 var getForecast = document.querySelector("#getForecastBtn");
+var getForecast2 = document.querySelector('#getForecastBtn2');
 
 // Weather click in nav bar will show modal
 $(weatherLink).click(function () {
@@ -24,7 +25,10 @@ $(getForecast).on("click", function () {
   $("html, body").animate({ scrollTop: weatherSection.offset().top }, 1000);
 });
 
-
+// Get Forecast Btn in Weather section
+$(getForecast2).click(function () {
+  $("#weatherModal").modal("show");
+});
 
 // Variable targeting the event
 var formSumbitHandler = function (event) {
