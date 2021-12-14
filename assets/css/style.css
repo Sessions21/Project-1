@@ -156,6 +156,12 @@ textarea {
   transition: all 0.3s ease-in-out;
 }
 
+#clearPlannerBtn {
+  width:max-content;
+  margin-left: 45%;
+  margin-right: 50%;
+}
+
 /*span weather element conditions for uv index*/
 span.severe {
   padding: 3px;
