@@ -1,22 +1,18 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
 }
 
 a {
   text-decoration: none;
 }
 
+/* nav bar styling */
 .nav-bar {
   position: absolute;
   z-index: 2;
   width: 100%;
-  background-color: rgba(100, 100, 100, .5);
+  background-color: rgba(100, 100, 100, 0.5);
   justify-content: space-between;
 }
 
@@ -25,7 +21,27 @@ a {
   margin-right: 10%;
 }
 
+.nav-link-home {
+  display: flex;
+  align-items: center;
+  padding: 0 1% 0 5%;
+  list-style: none;
+  height: 8vh;
+  margin: 0;
+  justify-content: end;
+}
 
+.sahp {
+  display: flex;
+  align-items: center;
+  padding: 0 1% 0 5%;
+  list-style: none;
+  height: 8vh;
+  margin: 3px;
+  justify-content: end;
+  color: lightsteelblue;
+  font-size: 27px;
+}
 
 .nav-link {
   display: flex;
@@ -34,27 +50,28 @@ a {
   list-style: none;
   height: 8vh;
   margin: 0;
-  justify-content:end;
+  justify-content: end;
 }
 
-li a {
+div a {
   display: block;
   color: #fff;
   text-decoration: none;
   font-size: 1.75rem;
 }
 
-.container-fluid{
+/* Header Section Styling */
+.hero {
   position: relative;
   height: 100vh;
   width: 100%;
   overflow: hidden;
 }
 
-.hero-image{
+.hero-image {
   position: relative;
   background-image: url(../images/Family-Home.jpg);
-  background-size:cover;
+  background-size: cover;
   background-position: center;
   height: 100%;
   width: 100%;
@@ -67,7 +84,7 @@ li a {
   width: 100%;
   top: 0;
   left: 0;
-  background:rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.45);
   z-index: 1;
 }
 
@@ -78,47 +95,161 @@ li a {
   flex-direction: column;
   position: absolute;
   top: 75%;
-  left: 48%;
+  left: 43%;
   font-size: 15px;
   color: #fff;
   z-index: 2;
 }
 
-.firstword {
-  color: var(--mid-blue)
+/* Scheduler */
+
+textarea {
+  background: transparent;
+  border: none;
+  resize: none;
+  color: #000000;
+  border-left: 1px solid black;
+  padding: 10px;
+}
+
+.jumbotron {
+  text-align: center;
+  background-color: transparent;
+  color: black;
+  border-radius: 0;
+}
+
+.description {
+  white-space: pre-wrap;
+}
+
+.time-block {
+  text-align: center;
+  border-radius: 15px;
+}
+
+.past {
+  background-color: orange;
+  color: white;
+}
+
+.present {
+  background-color: #ff6961;
+  color: white;
+}
+
+.future {
+  background-color: #77dd77;
+  color: white;
+}
+
+.saveBtn {
+  border-left: 1px solid black;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: #06aed5;
+  color: white;
+}
+
+.saveBtn i:hover {
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.clearBtn {
+  text-align: center;
+  margin-top: 10px;
 }
 
 /*span weather element conditions for uv index*/
-span.severe{
+span.severe {
   padding: 3px;
-  background-color:red;
-  color:var(--primary);
+  background-color: red;
+  color: var(--primary);
 }
 
-span.moderate{
+span.moderate {
   padding: 3px;
   background-color: orange;
   color: var(--primary);
 }
 
-span.favorable{
+span.favorable {
   padding: 3px;
   background-color: green;
   color: var(--primary);
 }
+
 /*end of uv index span styles*/
-@media (max-width: 768px) {
-  .nav-bar {
-    display: block;
+
+/*map container styling*/
+#map-container {
+  position: relative;
+  height: 500px;
+  width: 700px;
+  margin-left: 350px;
+  margin-top: -80px;
+}
+
+#map {
+  position: relative;
+  height: inherit;
+  width: inherit;
+}
+
+/* Footer Styling */
+.full-footer {
+  background-color: lightgray;
+}
+
+.top-footer h5 {
+  color: slategray;
+  font-weight: bold;
+}
+
+.top-footer h4 {
+  color: slategray;
+  font-weight: bold;
+}
+
+.top-footer p {
+  color: slategray;
+  font-size: 20px;
+}
+
+.contact a {
+  color: slategray;
+  font-size: 20px;
+}
+
+@media (max-width: 900px) {
+  .nav-containers {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     position: relative;
   }
-  
+
   .nav-link {
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 150px;
     display: flex;
     flex-direction: column;
+    text-align: center;
+  }
+
+  .nav-link-home {
     justify-content: center;
-    align-items: left;
+    align-items: center;
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .sahp {
+    display: none;
   }
 }
